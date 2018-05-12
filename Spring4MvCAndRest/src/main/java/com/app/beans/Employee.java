@@ -6,6 +6,16 @@ public class Employee {
 	private String organization;
 	private float salary;
 
+	public Employee() {
+	}
+
+	public Employee(int id, String name, String organization, float salary) {
+		this.id = id;
+		this.name = name;
+		this.organization = organization;
+		this.salary = salary;
+	}
+
 	public int getId() {
 		return id;
 	}

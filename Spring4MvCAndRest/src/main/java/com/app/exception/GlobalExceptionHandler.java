@@ -10,6 +10,9 @@ public class GlobalExceptionHandler {
 
 	@ExceptionHandler(Throwable.class)
 	public ResponseEntity<String> sendMessage(Throwable throwable) {
+		System.out.println("Exception Occur : ");
+		throwable.printStackTrace();
+		
 		String message = throwable.getMessage();
 		ResponseEntity<String> responseEntity = new ResponseEntity<String>(message, HttpStatus.INTERNAL_SERVER_ERROR);
 		return responseEntity;

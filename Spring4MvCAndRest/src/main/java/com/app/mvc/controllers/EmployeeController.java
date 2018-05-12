@@ -10,10 +10,12 @@ public interface EmployeeController {
 
 	public ModelAndView addEmployee(Employee employee);
 
-	public String removeEmployee(int id, Model model);
+	public ModelAndView removeEmployee(int id, Model model);
 
-	public String updateEmployee(Employee employee,Model model);
+	public String updateEmployee(Employee employee, Model model);
 
 	public ModelAndView searchEmployee(int id);
+
+	public ModelAndView getAllEmployees();
 
 }

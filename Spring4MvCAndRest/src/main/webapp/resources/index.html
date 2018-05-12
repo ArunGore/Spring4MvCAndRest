@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Employee CRUD operations</title>
+<script type="text/javascript">
+	function removeEmployee() {
+		var employeeId = prompt("Enter employee id to delete");
+		if (employeeId == null)
+			return;
+		
+		var link = "/Spring4MvCAndRest/mvc/employee/removeemployee?employeeId="+ employeeId;
+		utility(link);
+
+	}
+	
+	function updateEmployee() {
+		var employeeId = prompt("Enter employee id to update");
+		if (employeeId == null)
+			return;
+		
+		var link = "/Spring4MvCAndRest/mvc/employee/searchemployee?employeeId="+ employeeId;
+		utility(link);
+	}
+	
+	function searchEmployee() {
+		var employeeId = prompt("Enter employee id to search");
+		if (employeeId == null)
+			return;
+		
+		var link = "/Spring4MvCAndRest/mvc/employee/searchemployee?employeeId="+ employeeId;
+		utility(link);
+	}
+	
+	
+	
+	function utility(link){
+		var a = document.getElementById("hidden");
+		a.setAttribute("href", link);
+		a.click();
+	}
+</script>
+</head>
+<body>
+
+	<h3>
+		<a href="/Spring4MvCAndRest/mvc/employee/getaddemployeepage"> add
+			Employe</a>
+	</h3>
+	<br>
+	<h3>
+		<input type="button" value="Remove Employee" onclick="removeEmployee()">
+	</h3>
+	<br>
+	<h3>
+		<input type="button" value="Update Employee" onclick="updateEmployee()">
+	</h3>
+	<br>
+	<h3>
+		<input type="button" value="Search Employee" onclick="searchEmployee()">
+	</h3>
+	
+	<br>
+	<h3>
+		<a href="/Spring4MvCAndRest/mvc/employee/getallemployees"> Get All Employees</a>
+	</h3>
+
+	<a href="#" id="hidden" hidden>send</a>
+	<br>
+</body>
+</html>

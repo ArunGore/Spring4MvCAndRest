@@ -1,5 +1,7 @@
 package com.app.dao;
 
+import java.util.List;
+
 import com.app.beans.Employee;
 
 public interface EmployeeDao {
@@ -10,5 +12,7 @@ public interface EmployeeDao {
 	public int updateEmployee(Employee employee);
 
 	public Employee searchEmployee(int id);
+
+	public List<Employee> getAllEmployees();
 
 }

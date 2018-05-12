@@ -1,11 +1,14 @@
 package com.app.mvc.controllers;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.app.beans.Employee;
@@ -42,7 +45,7 @@ public class EmployeeControllerImpl implements EmployeeController {
 
 	@Override
 	@GetMapping(value = "removeemployee")
-	public String removeEmployee(int id, Model model) {
+	public ModelAndView removeEmployee(@RequestParam("employeeId") int id, Model model) {
 		int val = employeeService.removeEmployee(id);
 		String message = null;
 
@@ -52,8 +55,9 @@ public class EmployeeControllerImpl implements EmployeeController {
 			message = "Employee not removed sucessfully....";
 		}
 
-		model.addAttribute(message);
-		return "employeeResultPage";
+		ModelAndView modelAndView = new ModelAndView("employeeResultPage");
+		modelAndView.addObject("message", message);
+		return modelAndView;
 	}
 
 	@Override
@@ -67,15 +71,25 @@ public class EmployeeControllerImpl implements EmployeeController {
 			message = "Employee not updated sucessfully....";
 		}
 
-		model.addAttribute(message);
+		model.addAttribute("message", message);
 		return "employeeResultPage";
 	}
 
 	@Override
-	public ModelAndView searchEmployee(int id) {
+	@GetMapping(value = "searchemployee")
+	public ModelAndView searchEmployee(@RequestParam("employeeId") int id) {
 		Employee searchedEmployee = employeeService.searchEmployee(id);
-		ModelAndView modelAndView = new ModelAndView("employeeSearchResult");
+		ModelAndView modelAndView = new ModelAndView("employeeUpdatePage");
 		modelAndView.addObject("employee", searchedEmployee);
+		return modelAndView;
+	}
+
+	@Override
+	@GetMapping(value = "getallemployees")
+	public ModelAndView getAllEmployees() {
+		List<Employee> employees = employeeService.getAllEmployees();
+		ModelAndView modelAndView = new ModelAndView("listAllEmployees");
+		modelAndView.addObject("employees", employees);
 		return modelAndView;
 	}
 

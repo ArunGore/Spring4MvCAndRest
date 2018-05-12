@@ -1,5 +1,6 @@
 package com.app;
 
+import org.springframework.web.servlet.config.annotation.ViewControllerRegistry;
 import org.springframework.web.servlet.support.AbstractAnnotationConfigDispatcherServletInitializer;
 
 public class WebXmlInitializer extends AbstractAnnotationConfigDispatcherServletInitializer {
@@ -18,5 +19,4 @@ public class WebXmlInitializer extends AbstractAnnotationConfigDispatcherServlet
 	protected String[] getServletMappings() {
 		return new String[] { "/" };
 	}
-
 }
