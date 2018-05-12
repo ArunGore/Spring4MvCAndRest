@@ -1,4 +1,4 @@
-package com.mvcestapp.mvc.controllers;
+package com.app.mvc.controllers;
 
 public class EmployeeController {
 
