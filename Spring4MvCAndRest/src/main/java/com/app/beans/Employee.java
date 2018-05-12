@@ -1,9 +1,16 @@
 package com.app.beans;
 
+import javax.validation.constraints.NotNull;
+
+import org.hibernate.validator.constraints.NotEmpty;
+
 public class Employee {
 	private int id;
+	@NotEmpty(message = "Name should not be empty")
 	private String name;
+	@NotEmpty(message = "Organization should not be empty")
 	private String organization;
+	@NotNull(message = "Salary should not be empty")
 	private float salary;
 
 	public Employee() {

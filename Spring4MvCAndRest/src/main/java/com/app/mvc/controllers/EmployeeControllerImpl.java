@@ -2,9 +2,12 @@ package com.app.mvc.controllers;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -28,7 +31,10 @@ public class EmployeeControllerImpl implements EmployeeController {
 
 	@Override
 	@PostMapping(value = "/addemployee")
-	public ModelAndView addEmployee(Employee employee) {
+	public ModelAndView addEmployee(@Valid Employee employee, BindingResult bindingResult) {
+		if (bindingResult.hasErrors())
+			return new ModelAndView("employeeAddPage");
+
 		int val = employeeService.addEmployee(employee);
 		String message = null;
 
@@ -62,7 +68,10 @@ public class EmployeeControllerImpl implements EmployeeController {
 
 	@Override
 	@PostMapping(value = "updateemployee")
-	public String updateEmployee(Employee employee, Model model) {
+	public String updateEmployee(@Valid Employee employee, BindingResult bindingResult, Model model) {
+		if (bindingResult.hasErrors())
+			return "employeeUpdatePage";
+
 		int val = employeeService.updateEmployee(employee);
 		String message = null;
 		if (val > 0) {
